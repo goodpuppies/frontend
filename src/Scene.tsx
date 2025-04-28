@@ -6,7 +6,7 @@ import {
   Quaternion,
   Scene as SceneImpl,
 } from 'three'
-import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { VRMLoaderPlugin, VRM, VRMUtils, VRMHumanBoneName } from '@pixiv/three-vrm';
 import { create } from 'zustand';
 
@@ -31,7 +31,7 @@ export const Scene = () => {
   }); */
 
   function VRMModelHandles({ }) {
-    const gltf = useLoader(GLTFLoader, "/public/Velle.vrm", (loader) => {
+    const gltf = useLoader(GLTFLoader, "/Velle.vrm", (loader) => {
       loader.register((parser: any) => new VRMLoaderPlugin(parser));
     });
 
