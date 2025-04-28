@@ -6,7 +6,14 @@ import { type XRDevice } from 'iwer';
 import { XR } from '@react-three/xr';
 import { Scene } from "./Scene.tsx";
 import { xrDevice, xrStore, XRSetup } from "./XRSetup.tsx";
+import * as OpenVR from "../../OpenVR_TS_Bindings_Deno/openvr_bindings.ts"
 
+type actionData = [
+  OpenVR.InputPoseActionData,
+  OpenVR.InputPoseActionData,
+  OpenVR.InputDigitalActionData,
+  OpenVR.InputDigitalActionData,
+]
 
 // --- WebSocket Pose Hook ---
 function useWebSocketPose(device: XRDevice) {
@@ -87,10 +94,76 @@ function useWebSocketPose(device: XRDevice) {
   }, [device]); // Re-run effect if the device instance changes
 }
 
+// --- WebSocket Controller Pose Hook ---
+function useWebSocketControllerPose(device: XRDevice) {
+  useEffect(() => {
+    const ws = new WebSocket("ws://localhost:8888");
+    ws.onopen = () => {
+      console.log("WebSocket connected for controller pose updates");
+    };
+    ws.onclose = () => {
+      console.log("WebSocket for controller pose closed");
+    };
+    ws.onerror = (err) => {
+      console.error("WebSocket error (controller pose):", err);
+    };
+    ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data) as actionData;
+        const tempQuaternion = new THREE.Quaternion(); // Temporary quaternion
+        const m = new THREE.Matrix4(); // Reusable matrix
+
+        // Left controller
+        if (device.controllers && device.controllers['left']) {
+          const leftPoseData = data[0].pose;
+          if (leftPoseData && leftPoseData.mDeviceToAbsoluteTracking && leftPoseData.mDeviceToAbsoluteTracking.m) {
+            const leftPose = leftPoseData.mDeviceToAbsoluteTracking.m;
+            // Position
+            device.controllers['left'].position.set(leftPose[0][3], leftPose[1][3], leftPose[2][3]);
+            // Rotation
+            m.set(
+              leftPose[0][0], leftPose[0][1], leftPose[0][2], 0,
+              leftPose[1][0], leftPose[1][1], leftPose[1][2], 0,
+              leftPose[2][0], leftPose[2][1], leftPose[2][2], 0,
+              0, 0, 0, 1
+            );
+            // Use temporary quaternion and copy values
+            tempQuaternion.setFromRotationMatrix(m);
+            device.controllers['left'].quaternion.set(tempQuaternion.x, tempQuaternion.y, tempQuaternion.z, tempQuaternion.w);
+          }
+        }
+        // Right controller
+        if (device.controllers && device.controllers['right']) {
+          const rightPoseData = data[1].pose;
+          if (rightPoseData && rightPoseData.mDeviceToAbsoluteTracking && rightPoseData.mDeviceToAbsoluteTracking.m) {
+            const rightPose = rightPoseData.mDeviceToAbsoluteTracking.m;
+            // Position
+            device.controllers['right'].position.set(rightPose[0][3], rightPose[1][3], rightPose[2][3]);
+            // Rotation
+            m.set(
+              rightPose[0][0], rightPose[0][1], rightPose[0][2], 0,
+              rightPose[1][0], rightPose[1][1], rightPose[1][2], 0,
+              rightPose[2][0], rightPose[2][1], rightPose[2][2], 0,
+              0, 0, 0, 1
+            );
+            // Use temporary quaternion and copy values
+            tempQuaternion.setFromRotationMatrix(m);
+            device.controllers['right'].quaternion.set(tempQuaternion.x, tempQuaternion.y, tempQuaternion.z, tempQuaternion.w);
+          }
+        }
+      } catch (e) {
+        // Ignore parse errors or other issues during processing
+        console.warn("Error processing controller data:", e);
+      }
+    };
+    return () => ws.close();
+  }, [device]);
+}
 
 function App() {
   // Call the WebSocket hook here, passing the xrDevice instance
   useWebSocketPose(xrDevice);
+  useWebSocketControllerPose(xrDevice);
 
   return (
     <>

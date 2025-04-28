@@ -7,7 +7,7 @@ const AUTO_START_XR = true;
 export const xrDevice = new XRDevice(metaQuest3, {
   stereoEnabled: true,
   //ipd: 0.90,
-  fovy: 2
+  fovy: 1.8
 });
 xrDevice.installRuntime();
 
