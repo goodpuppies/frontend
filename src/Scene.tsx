@@ -118,13 +118,13 @@ export const Scene = () => {
       <ambientLight intensity={0.5} />
       <pointLight intensity={0.3} position={[0, 2, -1]} />
       <group position={[0.07, 0.27, -1.44]} scale={[0.59, 0.59, 0.59]}>
-        <VRMModelHandles />
+        {/* <VRMModelHandles /> */}
       </group>
 
-      <mesh ref={cubeRef} position={[0.06, 1.03, -1.43]} scale={[0.21, 0.21, 0.21]}> {/* Adjusted position/scale */}
+      {/* <mesh ref={cubeRef} position={[0.06, 1.03, -1.43]} scale={[0.21, 0.21, 0.21]}> 
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={0x00ffff} roughness={0.5} metalness={0.1} /> {/* Changed material */}
-      </mesh>
+        <meshStandardMaterial color={0x00ffff} roughness={0.5} metalness={0.1} /> 
+      </mesh> */}
     </>
   );
 };

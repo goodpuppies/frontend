@@ -25,8 +25,8 @@ xrDevice.installRuntime();
 export const UItrans = () => {
   return (
     <group
-      position={[0.09, 1e-7, 0.05]}
-      rotation={[-1.872728211985193, 0.28477612331588925, -1.0197590554234688]} scale={[0.47, 0.47, 0.47]}>
+      position={[0.11, 1e-7, 0.04]}
+      rotation={[-1.1064536056499201, -0.5691113573725565, -1.1867850376947444]} scale={[0.47, 0.47, 0.47]}>
       <Root pixelSize={0.001} >
         <UI />
       </Root>
