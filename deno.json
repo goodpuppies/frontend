@@ -12,9 +12,13 @@
     "jsxImportSourceTypes": "@types/react"
   },
   "imports": {
+    "@react-three/uikit-lucide": "npm:@react-three/uikit-lucide@^0.8.15",
+    "zustand": "npm:zustand@^5.0.3",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.4",
     "@pixiv/three-vrm": "npm:@pixiv/three-vrm@^3.4.0",
     "@react-three/fiber": "npm:@react-three/fiber@^9.1.2",
+    "@react-three/uikit": "npm:@react-three/uikit@^0.8.15",
+    "@react-three/uikit-default": "npm:@react-three/uikit-default@^0.8.15",
     "@react-three/xr": "npm:@react-three/xr@^6.6.14",
     "@types/react": "npm:@types/react@^19.0.10",
     "@types/react-dom": "npm:@types/react-dom@^19.0.4",
@@ -24,7 +28,6 @@
     "react": "npm:react@^19.0.0",
     "react-dom": "npm:react-dom@^19.0.0",
     "three": "npm:three@^0.176.0",
-    "vite": "npm:vite@^6.1.1",
-    "zustand": "npm:zustand@^5.0.3"
+    "vite": "npm:vite@^6.1.1"
   }
 }
