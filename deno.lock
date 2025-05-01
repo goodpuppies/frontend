@@ -4,6 +4,7 @@
     "npm:@deno/vite-plugin@^1.0.4": "1.0.4_vite@6.3.4__picomatch@4.0.2",
     "npm:@pixiv/three-vrm@^3.4.0": "3.4.0_three@0.176.0",
     "npm:@react-three/fiber@^9.1.2": "9.1.2_react@19.1.0_react-dom@19.1.0__react@19.1.0_three@0.176.0_@types+react@19.1.2_use-sync-external-store@1.5.0__react@19.1.0",
+    "npm:@react-three/handle@^6.6.16": "6.6.16_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.176.0__@types+react@19.1.2__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_three@0.176.0_react-dom@19.1.0__react@19.1.0_@types+react@19.1.2",
     "npm:@react-three/uikit-default@~0.8.15": "0.8.15_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.176.0__@types+react@19.1.2__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_three@0.176.0_react-dom@19.1.0__react@19.1.0_@types+react@19.1.2",
     "npm:@react-three/uikit-lucide@~0.8.15": "0.8.15_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.176.0__@types+react@19.1.2__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_three@0.176.0_react-dom@19.1.0__react@19.1.0_@types+react@19.1.2",
     "npm:@react-three/uikit@~0.8.15": "0.8.15_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.176.0__@types+react@19.1.2__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_three@0.176.0_react-dom@19.1.0__react@19.1.0_@types+react@19.1.2",
@@ -360,7 +361,7 @@
         "@fortawesome/fontawesome-svg-core",
         "@fortawesome/free-solid-svg-icons",
         "@fortawesome/react-fontawesome",
-        "@pmndrs/handle",
+        "@pmndrs/handle@6.6.16_@types+react@19.1.2_react@18.3.1",
         "@pmndrs/pointer-events",
         "iwer",
         "react@18.3.1",
@@ -508,6 +509,13 @@
         "zustand@4.5.6_@types+react@19.1.2_react@18.3.1"
       ]
     },
+    "@pmndrs/handle@6.6.16_@types+react@19.1.2_react@19.1.0": {
+      "integrity": "sha512-+//YQ9Hw3emvgAM3WuWEtbdPE6T4m1RBdfDIblPNb2iDGGPdnQXlVVfQL3DKeRjw3SDpVnitLN+cDAiaQb4HcQ==",
+      "dependencies": [
+        "@pmndrs/pointer-events",
+        "zustand@4.5.6_@types+react@19.1.2_react@19.1.0"
+      ]
+    },
     "@pmndrs/msdfonts@0.8.15": {
       "integrity": "sha512-5D65OLTR3Is3cQ30GQpbL8BMux0C7FgIclOgaScCobt+Zbz2e1l1XVBLQZaVCDME/NKVkpv5ai9rOMK94Vdxfg=="
     },
@@ -562,6 +570,17 @@
       ],
       "optionalPeers": [
         "react-dom@19.1.0_react@19.1.0"
+      ]
+    },
+    "@react-three/handle@6.6.16_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.176.0__@types+react@19.1.2__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_three@0.176.0_react-dom@19.1.0__react@19.1.0_@types+react@19.1.2": {
+      "integrity": "sha512-lgDdI7hA48U3F5NhgGbH7KcKKx9lvALh1vtrI6Fmokv09LUaWflccivxykxKivKwVguAwRJnQ9dRX+KCh9YFZg==",
+      "dependencies": [
+        "@pmndrs/handle@6.6.16_@types+react@19.1.2_react@19.1.0",
+        "@pmndrs/pointer-events",
+        "@react-three/fiber",
+        "react@19.1.0",
+        "three@0.176.0",
+        "zustand@4.5.6_@types+react@19.1.2_react@19.1.0"
       ]
     },
     "@react-three/uikit-default@0.8.15_@react-three+fiber@9.1.2__react@19.1.0__react-dom@19.1.0___react@19.1.0__three@0.176.0__@types+react@19.1.2__use-sync-external-store@1.5.0___react@19.1.0_react@19.1.0_three@0.176.0_react-dom@19.1.0__react@19.1.0_@types+react@19.1.2": {
@@ -1955,6 +1974,7 @@
       "npm:@deno/vite-plugin@^1.0.4",
       "npm:@pixiv/three-vrm@^3.4.0",
       "npm:@react-three/fiber@^9.1.2",
+      "npm:@react-three/handle@^6.6.16",
       "npm:@react-three/uikit-default@~0.8.15",
       "npm:@react-three/uikit-lucide@~0.8.15",
       "npm:@react-three/uikit@~0.8.15",

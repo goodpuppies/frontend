@@ -91,6 +91,7 @@ export function useWebSocketPose(device: XRDevice) {
 
 // --- WebSocket Controller Pose Hook ---
 export function useWebSocketControllerPose(device: XRDevice) {
+  
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:8888");
     ws.onopen = () => {
@@ -108,7 +109,7 @@ export function useWebSocketControllerPose(device: XRDevice) {
         const tempQuaternion = new THREE.Quaternion(); // Temporary quaternion
         const m = new THREE.Matrix4(); // Reusable matrix
 
-        // Left controller
+        // Left controller pose
         if (device.controllers && device.controllers['left']) {
           const leftPoseData = data[0].pose;
           if (leftPoseData && leftPoseData.mDeviceToAbsoluteTracking && leftPoseData.mDeviceToAbsoluteTracking.m) {
@@ -127,7 +128,7 @@ export function useWebSocketControllerPose(device: XRDevice) {
             device.controllers['left'].quaternion.set(tempQuaternion.x, tempQuaternion.y, tempQuaternion.z, tempQuaternion.w);
           }
         }
-        // Right controller
+        // Right controller pose
         if (device.controllers && device.controllers['right']) {
           const rightPoseData = data[1].pose;
           if (rightPoseData && rightPoseData.mDeviceToAbsoluteTracking && rightPoseData.mDeviceToAbsoluteTracking.m) {
@@ -146,6 +147,23 @@ export function useWebSocketControllerPose(device: XRDevice) {
             device.controllers['right'].quaternion.set(tempQuaternion.x, tempQuaternion.y, tempQuaternion.z, tempQuaternion.w);
           }
         }
+
+        // Left controller trigger
+        if (device.controllers && device.controllers['left'] && data[2]) {
+          const leftTriggerData = data[2];
+          device.controllers['left'].updateButtonValue('trigger', leftTriggerData.bState ? 1.0 : 0.0);
+          // Optional: Log trigger state
+          //console.log("Left Trigger State:", leftTriggerData.bState);
+        }
+
+        // Right controller trigger
+        if (device.controllers && device.controllers['right'] && data[3]) {
+          const rightTriggerData = data[3];
+          device.controllers['right'].updateButtonValue('trigger', rightTriggerData.bState ? 1.0 : 0.0);
+          // Optional: Log trigger state
+          //console.log("Right Trigger State:", rightTriggerData.bState);
+        }
+
       } catch (e) {
         // Ignore parse errors or other issues during processing
         console.warn("Error processing controller data:", e);

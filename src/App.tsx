@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, forwardRef, useState, useRef, ReactNode } from "react";
 import { Canvas } from '@react-three/fiber';
 import { XR, XRHandModel } from '@react-three/xr';
 import { Scene } from "./Scene.tsx";
@@ -11,8 +11,9 @@ import { UI } from "./Menu.tsx";
 import { Root, Container, Text } from "@react-three/uikit";
 import { Defaults } from "@react-three/uikit-default";
 import { ClockIcon, Group } from '@react-three/uikit-lucide'
-
-
+import { CustomTransformHandles } from "./Handle.tsx"
+import { Group as ThreeGroup } from 'three'; // Import Group from three
+import { Frame } from "./Frame.tsx"
 
 
 export const xrDevice = new XRDevice(metaQuest3, {
@@ -22,14 +23,27 @@ export const xrDevice = new XRDevice(metaQuest3, {
 });
 xrDevice.installRuntime();
 
+
+
+
+
 export const UItrans = () => {
+  // Note: The Root's pixelSize and the Frame's geometry args
+  // need careful coordination for the frame to visually "bound" the UI.
+  // Dynamic sizing would be a more robust solution.
   return (
     <group
       position={[0.11, 1e-7, 0.04]}
-      rotation={[-1.1064536056499201, -0.5691113573725565, -1.1867850376947444]} scale={[0.47, 0.47, 0.47]}>
-      <Root pixelSize={0.001} >
-        <UI />
-      </Root>
+      rotation={[-1.1064536056499201, -0.5691113573725565, -1.1867850376947444]}
+      scale={[0.47, 0.47, 0.47]}
+    >
+      <CustomTransformHandles>
+        <Frame>
+          <Root pixelSize={0.001} >
+            <UI />
+          </Root>
+        </Frame>
+      </CustomTransformHandles>
     </group>
   )
 }
@@ -44,22 +58,21 @@ export function HandWithWatch() {
   )
 }
 
-
-
-
+export function Empty() {
+  return (
+    <>
+    </>
+  )
+}
 
 export const xrStore = createXRStore({
   controller: {
     right: HandWithWatch,
-    left: { model: { colorWrite: false, renderOrder: -1 }, grabPointer: false, rayPointer: false },
+    left: { model: false },
   },
   foveation: 0,
   bounded: false,
 })
-
-
-
-
 
 function App() {
   // Call the WebSocket hook here, passing the xrDevice instance

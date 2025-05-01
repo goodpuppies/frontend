@@ -12,6 +12,7 @@
     "jsxImportSourceTypes": "@types/react"
   },
   "imports": {
+    "@react-three/handle": "npm:@react-three/handle@^6.6.16",
     "@react-three/uikit-lucide": "npm:@react-three/uikit-lucide@^0.8.15",
     "zustand": "npm:zustand@^5.0.3",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.4",
