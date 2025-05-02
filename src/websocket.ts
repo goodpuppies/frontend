@@ -17,25 +17,6 @@ export function useWebSocketPose(device: XRDevice) {
     const ws = new WebSocket("ws://localhost:8887");
     ws.binaryType = "arraybuffer";
 
-    ws.onopen = () => {
-      console.log("WebSocket connected for pose updates");
-    };
-
-    ws.onclose = (event) => {
-      console.log(
-        `WebSocket disconnected: Code=${event.code}, Reason='${event.reason}', WasClean=${event.wasClean}`
-      );
-    };
-
-    ws.onerror = (err) => {
-      console.error("WebSocket error:", err);
-      // Attempt to log more details if possible
-      console.error(
-        "WebSocket error object:",
-        JSON.stringify(err, Object.getOwnPropertyNames(err))
-      );
-    };
-
     ws.onmessage = (event) => {
       if (!(event.data instanceof ArrayBuffer) || event.data.byteLength !== 48) {
         console.warn("Unexpected WebSocket message format or size", event.data);
@@ -94,15 +75,6 @@ export function useWebSocketControllerPose(device: XRDevice) {
   
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:8888");
-    ws.onopen = () => {
-      console.log("WebSocket connected for controller pose updates");
-    };
-    ws.onclose = () => {
-      console.log("WebSocket for controller pose closed");
-    };
-    ws.onerror = (err) => {
-      console.error("WebSocket error (controller pose):", err);
-    };
     ws.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data) as actionData;
