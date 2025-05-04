@@ -42,7 +42,7 @@ export const UI = () => {
 
   // Define colors based on the image (approximations)
   const darkBlueGray = '#2c3e50' // Main background
-  const semiTransparentGray = 'rgba(70, 80, 90, 0.6)' // Top section background
+  const semiTransparentGray = 'rgba(70, 80, 90)' // Top section background
   const orange = '#f39c12' // Controls background (inactive)
   const lightGrayText = '#bdc3c7' // Secondary text
   const whiteText = '#ffffff'
@@ -242,7 +242,7 @@ export const UI = () => {
       </Container>
 
       {/* Optional: Display connection status */}
-      <Container positionType='absolute' top={10} right={10}>
+      <Container positionType='absolute'>
         <Text color={isConnected ? 'lightgreen' : 'red'} fontSize={12}>
           {isConnected ? 'Connected' : 'Disconnected'}
         </Text>

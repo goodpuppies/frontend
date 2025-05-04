@@ -16,24 +16,17 @@ export const Frame = forwardRef<ThreeGroup, FrameProps>(({ children, ...props },
     const width = 0.4;
     const height = 0.2;
     const depth = 0.04;
+    const meshRef = useRef();
 
     return (
-        // Pass the ref and props to the group
         <group
             ref={ref}
             {...props}
-            onPointerOver={(e) => {
-                // Stop propagation if you only want the group to handle it,
-                // or let it bubble up if children might also need hover states.
-                e.stopPropagation();
-                setHovered(true);
-            }}
-            onPointerOut={(e) => {
-                e.stopPropagation();
-                setHovered(false);
-            }}
+            onPointerOver={() => setHovered(true)}
+            onPointerOut={() => setHovered(false)}
         >
             {children}
+            {/* Frame wireframe - no event handlers on this mesh */}
             <mesh
                 // Disable raycasting for this mesh
                 raycast={() => null}

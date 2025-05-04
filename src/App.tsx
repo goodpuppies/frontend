@@ -12,8 +12,8 @@ import { Root, Container, Text } from "@react-three/uikit";
 import { Defaults } from "@react-three/uikit-default";
 import { ClockIcon, Group } from '@react-three/uikit-lucide'
 import { CustomTransformHandles } from "./Handle.tsx"
-import { Group as ThreeGroup } from 'three'; // Import Group from three
 import { Frame } from "./Frame.tsx"
+import { Handle } from '@react-three/handle'
 
 
 export const xrDevice = new XRDevice(metaQuest3, {
@@ -24,31 +24,25 @@ export const xrDevice = new XRDevice(metaQuest3, {
 xrDevice.installRuntime();
 
 
-
-
-
 export const UItrans = () => {
-  // Note: The Root's pixelSize and the Frame's geometry args
-  // need careful coordination for the frame to visually "bound" the UI.
-  // Dynamic sizing would be a more robust solution.
   return (
     <group
       position={[0.11, 1e-7, 0.04]}
       rotation={[-1.1064536056499201, -0.5691113573725565, -1.1867850376947444]}
       scale={[0.47, 0.47, 0.47]}
     >
-      <CustomTransformHandles>
+      <Handle>
         <Frame>
           <Root pixelSize={0.001} >
             <UI />
           </Root>
         </Frame>
-      </CustomTransformHandles>
+      </Handle>
     </group>
   )
 }
 
-export function HandWithWatch() {
+export function UiSus() {
   return (
     <>
       <Suspense>
@@ -67,7 +61,7 @@ export function Empty() {
 
 export const xrStore = createXRStore({
   controller: {
-    right: HandWithWatch,
+    right: UiSus,
     left: { model: false },
   },
   foveation: 0,
@@ -81,28 +75,13 @@ function App() {
 
   return (
     <>
+      {/* <button  onClick={() => xrStore.enterAR()}>Enter AR</button> */}
       <Canvas
         style={{ position: 'absolute', top: 0, left: 0 }}
       >
         <XRSetup />
         <XR store={xrStore}>
           <Scene />
-          <group position={[0, 1.12, 0.25]}>
-            <Root
-              overflow="scroll"
-              scrollbarColor="black"
-              flexDirection="column"
-              gap={32}
-              paddingX={32}
-              alignItems="center"
-              padding={32}
-              pixelSize={0.0005}
-            >
-              <Defaults>
-                <UI />
-              </Defaults>
-            </Root>
-          </group>
         </XR>
       </Canvas>
     </>
