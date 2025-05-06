@@ -16,7 +16,6 @@ export const Frame = forwardRef<ThreeGroup, FrameProps>(({ children, ...props },
     const width = 0.4;
     const height = 0.2;
     const depth = 0.04;
-    const meshRef = useRef();
 
     return (
         <group

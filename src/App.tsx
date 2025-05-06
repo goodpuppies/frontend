@@ -62,8 +62,7 @@ export function Empty() {
 export const xrStore = createXRStore({
   controller: {
     right: UiSus,
-    left: { model: false },
-    rayPointer: {minDistance:-1}
+    left: { rayPointer: { minDistance:-1, }, model: false },
   },
   foveation: 0,
   bounded: false,
