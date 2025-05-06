@@ -1,4 +1,4 @@
-import { Suspense, useEffect, forwardRef, useState, useRef, ReactNode } from "react";
+import React, { Suspense, useEffect, forwardRef, useState, useRef, ReactNode } from "react";
 import { Canvas } from '@react-three/fiber';
 import { XR, XRHandModel } from '@react-three/xr';
 import { Scene } from "./Scene.tsx";
@@ -24,10 +24,10 @@ export const xrDevice = new XRDevice(metaQuest3, {
 xrDevice.installRuntime();
 
 
-export const UItrans = () => {
+export function UItrans() {
   return (
     <group
-      position={[0.11, 1e-7, 0.04]}
+      position={[0.14, 1e-7, 0.04]}
       rotation={[-1.1064536056499201, -0.5691113573725565, -1.1867850376947444]}
       scale={[0.47, 0.47, 0.47]}
     >
@@ -63,6 +63,7 @@ export const xrStore = createXRStore({
   controller: {
     right: UiSus,
     left: { model: false },
+    rayPointer: {minDistance:-1}
   },
   foveation: 0,
   bounded: false,
@@ -75,7 +76,12 @@ function App() {
 
   return (
     <>
-      {/* <button  onClick={() => xrStore.enterAR()}>Enter AR</button> */}
+      {/* <button
+        onClick={()=> xrStore.enterAR()}
+        style={{ position: 'relative', zIndex: 1, padding: '10px', margin: '10px' }}
+      >
+        Enter AR
+      </button> */}
       <Canvas
         style={{ position: 'absolute', top: 0, left: 0 }}
       >

@@ -11,5 +11,8 @@ export default defineConfig({
   build: {
     outDir: '../../dist', // Output to ../dist relative to frontend dir
     emptyOutDir: true,
-  }
+  },
+  resolve: {
+    dedupe: ['@react-three/fiber', 'three'],
+  },
 })
