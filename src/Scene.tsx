@@ -121,10 +121,10 @@ export const Scene = () => {
         {/* <VRMModelHandles /> */}
       </group>
 
-      {/* <mesh ref={cubeRef} position={[0.06, 1.03, -1.43]} scale={[0.21, 0.21, 0.21]}> 
+      <mesh ref={cubeRef} position={[0, 0, -1.43]} scale={0.52}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={0x00ffff} roughness={0.5} metalness={0.1} /> 
-      </mesh> */}
+        <meshStandardMaterial color={0x00ffff} roughness={0.5} metalness={0.1} />
+      </mesh>
     </>
   );
 };
