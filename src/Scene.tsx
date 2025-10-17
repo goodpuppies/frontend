@@ -117,8 +117,8 @@ export const Scene = () => {
       {/* <gridHelper args={[10, 10]} visible /> */}
       <ambientLight intensity={0.5} />
       <pointLight intensity={0.3} position={[0, 2, -1]} />
-      <group position={[0.07, 0.27, -1.44]} scale={[0.59, 0.59, 0.59]}>
-        {/* <VRMModelHandles /> */}
+      <group position={[0.07, 0.73, -1.44]} scale={[0.59, 0.59, 0.59]}>
+        <VRMModelHandles />
       </group>
 
       <mesh ref={cubeRef} position={[0, 0, -1.43]} scale={0.52}>

@@ -22,11 +22,10 @@ export const xrDevice = new XRDevice(metaQuest3, {
   fovy: 1.9
 });
 xrDevice.installRuntime();
-/* //@ts-expect-error cef extension
-// deno-lint-ignore no-window */
+
+//@ts-expect-error cef extension
+// deno-lint-ignore no-window
 window.cefExt.webxr.setDevice(xrDevice);
-
-
 
 export function UiSus() {
   return (

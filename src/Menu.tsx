@@ -36,7 +36,7 @@ export const UI = () => {
   // WebSocket state and ref
   const socketRef = useRef<WebSocket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
-  const reconnectInterval = useRef<NodeJS.Timeout | null>(null); // For reconnection attempts
+  const reconnectInterval = useRef<ReturnType<typeof setInterval> | null>(null); // For reconnection attempts
 
   const connectWebSocket = () => {
     console.log("Attempting to connect WebSocket...");
