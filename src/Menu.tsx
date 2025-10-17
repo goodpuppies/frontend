@@ -11,29 +11,6 @@ import { Layers, Music, SignalHigh } from '@react-three/uikit-lucide' // Import 
 
 
 
-export const TriplexWrapper = () => {
-  return (
-    <>
-      <Canvas style={{ position: "absolute", inset: "0", touchAction: "none" }} gl={{ localClippingEnabled: true }}>
-        <Defaults>
-          <Fullscreen
-            overflow="scroll"
-            scrollbarColor="black"
-
-
-            flexDirection="column"
-            gap={32}
-            paddingX={32}
-            alignItems="center"
-            padding={32}
-          >
-            <UI />
-          </Fullscreen>
-        </Defaults>
-      </Canvas>
-    </>
-  )
-}
 
 export const UI = () => {
   const [_pcs, _updatePCS] = useState(() => getPreferredColorScheme())
@@ -249,5 +226,30 @@ export const UI = () => {
       </Container>
 
     </Container>
+  )
+}
+
+
+export const TriplexWrapper = () => {
+  return (
+    <>
+      <Canvas style={{ position: "absolute", inset: "0", touchAction: "none" }} gl={{ localClippingEnabled: true }}>
+        <Defaults>
+          <Fullscreen
+            overflow="scroll"
+            scrollbarColor="black"
+
+
+            flexDirection="column"
+            gap={32}
+            paddingX={32}
+            alignItems="center"
+            padding={32}
+          >
+            <UI />
+          </Fullscreen>
+        </Defaults>
+      </Canvas>
+    </>
   )
 }

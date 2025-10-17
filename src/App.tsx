@@ -22,25 +22,11 @@ export const xrDevice = new XRDevice(metaQuest3, {
   fovy: 1.9
 });
 xrDevice.installRuntime();
+/* //@ts-expect-error cef extension
+// deno-lint-ignore no-window */
+window.cefExt.webxr.setDevice(xrDevice);
 
 
-export function UItrans() {
-  return (
-    <group
-      position={[0.14, 1e-7, 0.04]}
-      rotation={[-1.1064536056499201, -0.5691113573725565, -1.1867850376947444]}
-      scale={[0.47, 0.47, 0.47]}
-    >
-      <Handle>
-        <Frame>
-          <Root pixelSize={0.001} >
-            <UI />
-          </Root>
-        </Frame>
-      </Handle>
-    </group>
-  )
-}
 
 export function UiSus() {
   return (
@@ -70,8 +56,10 @@ export const xrStore = createXRStore({
 
 function App() {
   // Call the WebSocket hook here, passing the xrDevice instance
-  useWebSocketPose(xrDevice);
-  useWebSocketControllerPose(xrDevice);
+  //useWebSocketPose(xrDevice);
+  //useWebSocketControllerPose(xrDevice);
+  
+
 
   return (
     <>
@@ -94,3 +82,23 @@ function App() {
 }
 
 export default App
+
+export function UItrans() {
+  return (
+    <group
+      position={[0.14, 1e-7, 0.04]}
+      rotation={[-1.1064536056499201, -0.5691113573725565, -1.1867850376947444]}
+      scale={[0.47, 0.47, 0.47]}
+    >
+      <Handle>
+        <Frame>
+          <Root pixelSize={0.001} >
+            <UI />
+          </Root>
+        </Frame>
+      </Handle>
+    </group>
+  )
+}
+
+
