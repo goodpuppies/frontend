@@ -9,12 +9,6 @@ import {
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { VRMLoaderPlugin, VRM, VRMUtils, VRMHumanBoneName } from '@pixiv/three-vrm';
 import { create } from 'zustand';
-import { Text, Fullscreen, Container, getPreferredColorScheme, setPreferredColorScheme, Image, Root } from '@react-three/uikit'
-import { Defaults, DialogAnchor, colors, Button, Switch } from "@react-three/uikit-default";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@react-three/uikit-default"
-import { Layers, Music, SignalHigh } from '@react-three/uikit-lucide' // Import icons
-import { UI } from "./Menu.tsx";
-
 
 const useSceneStore = create(() => ({
   boneTransformations: {} as Record<string, ReturnType<typeof createDefaultTransformation>>,
@@ -117,7 +111,7 @@ export const Scene = () => {
       {/* <gridHelper args={[10, 10]} visible /> */}
       <ambientLight intensity={0.5} />
       <pointLight intensity={0.3} position={[0, 2, -1]} />
-      <group position={[0.07, 0.73, -1.44]} scale={[0.59, 0.59, 0.59]}>
+      <group position={[0.07, 0.43, -1.44]} scale={[0.59, 0.59, 0.59]}>
         <VRMModelHandles />
       </group>
 

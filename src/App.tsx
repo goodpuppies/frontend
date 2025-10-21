@@ -1,10 +1,8 @@
-import React, { Suspense, useEffect, forwardRef, useState, useRef, ReactNode } from "react";
+import { Suspense, useEffect, forwardRef, useState, useRef, ReactNode } from "react";
 import { Canvas } from '@react-three/fiber';
 import { XR, XRHandModel } from '@react-three/xr';
 import { Scene } from "./Scene.tsx";
 import { XRSetup } from "./XRSetup.tsx";
-import { useWebSocketPose, useWebSocketControllerPose } from "./websocket.ts";
-
 import { XRDevice, metaQuest3 } from 'iwer';
 import { createXRStore } from '@react-three/xr';
 import { UI } from "./Menu.tsx";
@@ -23,8 +21,9 @@ export const xrDevice = new XRDevice(metaQuest3, {
 });
 xrDevice.installRuntime();
 
+//bind xrDevice to cef webxr extension
 //@ts-expect-error cef extension
-// deno-lint-ignore no-window
+//deno-lint-ignore no-window
 window.cefExt.webxr.setDevice(xrDevice);
 
 export function UiSus() {
@@ -54,20 +53,9 @@ export const xrStore = createXRStore({
 })
 
 function App() {
-  // Call the WebSocket hook here, passing the xrDevice instance
-  //useWebSocketPose(xrDevice);
-  //useWebSocketControllerPose(xrDevice);
-  
-
 
   return (
     <>
-      {/* <button
-        onClick={()=> xrStore.enterAR()}
-        style={{ position: 'relative', zIndex: 1, padding: '10px', margin: '10px' }}
-      >
-        Enter AR
-      </button> */}
       <Canvas
         style={{ position: 'absolute', top: 0, left: 0 }}
       >
