@@ -25,7 +25,7 @@
     "@types/react-dom": "npm:@types/react-dom@^19.0.4",
     "@types/three": "npm:@types/three@^0.176.0",
     "@vitejs/plugin-react": "npm:@vitejs/plugin-react@^4.3.4",
-    "iwer": "npm:iwer@^2.0.1",
+    "iwer": "../immersive-web-emulation-runtime/lib/index.js",
     "react": "npm:react@^19.0.0",
     "react-dom": "npm:react-dom@^19.0.0",
     "three": "npm:three@^0.176.0",
